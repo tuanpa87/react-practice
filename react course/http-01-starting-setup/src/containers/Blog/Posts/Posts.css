@@ -1,0 +1,15 @@
+.Posts {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 80%;
+  margin: auto;
+}
+
+.Posts > a {
+  margin-top: 20px;
+}
+
+.Posts article {
+  height: 100%;
+}
