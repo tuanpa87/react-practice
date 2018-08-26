@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./App.css";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Exercises from "./components/Exercises";
@@ -62,11 +63,11 @@ class App extends Component {
   };
 
   handleExerciseDelete = id => {
-    this.setState(({ exercises }) => ({
-      //exercises is the prevState
+    this.setState(({ exercises, exercise, editMode }) => ({
+      //exercises, exercise,editMode are the prevState
       exercises: exercises.filter(ex => ex.id !== id),
-      editMode: false,
-      exercise: {}
+      editMode: exercise.id === id ? false : editMode,
+      exercise: exercise.id === id ? {} : exercise
     }));
   };
 
@@ -96,7 +97,8 @@ class App extends Component {
     const { category, exercise, editMode } = this.state;
 
     return (
-      <div className="App">
+      <Fragment>
+        <CssBaseline /> 
         <Header
           muscles={muscles}
           onExerciseCreate={this.handleExerciseCreate}
@@ -117,7 +119,7 @@ class App extends Component {
           onSelect={this.handleCategorySelect}
           category={category}
         />
-      </div>
+      </Fragment>
     );
   }
 }
