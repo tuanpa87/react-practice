@@ -11,6 +11,8 @@ const styles = {
   }
 }
 
+//dont need muscles here when using content api Provider and Consumer
+
 const header = ({classes ,muscles, onExerciseCreate}) => {
   return (
     <AppBar position="static">
@@ -18,7 +20,8 @@ const header = ({classes ,muscles, onExerciseCreate}) => {
         <Typography variant="headline" color="inherit" className={classes.flexItem}>
           Exercises Databate
         </Typography>
-        <CreateDialog muscles={muscles} onCreate={onExerciseCreate}/>
+        <CreateDialog muscles={muscles} onCreate={onExerciseCreate}/> 
+
       </Toolbar>
     </AppBar>
   );

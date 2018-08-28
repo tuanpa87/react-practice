@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Exercises from "./components/Exercises";
 import { muscles, exercises } from "./store";
+import { Provider } from "./context";
 
 class App extends Component {
   state = {
@@ -89,6 +90,11 @@ class App extends Component {
     }));
   };
 
+  getContext = () => ({
+    muscles,
+    ...this.state
+  })
+
   render() {
     const exercises = this.getExercisesByGroup();
     console.log(exercises);
@@ -97,29 +103,31 @@ class App extends Component {
     const { category, exercise, editMode } = this.state;
 
     return (
-      <Fragment>
-        <CssBaseline /> 
-        <Header
-          muscles={muscles}
-          onExerciseCreate={this.handleExerciseCreate}
-        />
-        <Exercises
-          exercises={exercises}
-          category={category}
-          onSelect={this.handleExerciseSelect}
-          exercise={exercise}
-          onDelete={this.handleExerciseDelete}
-          onSelectEdit={this.handleExerciseSelectEdit}
-          editMode={editMode}
-          muscles={muscles}
-          onEdit={this.handleExerciseEdit}
-        />
-        <Footer
-          muscles={muscles}
-          onSelect={this.handleCategorySelect}
-          category={category}
-        />
-      </Fragment>
+      <Provider value={this.getContext()}>
+        <Fragment>
+          <CssBaseline />
+          <Header
+            muscles={muscles}
+            onExerciseCreate={this.handleExerciseCreate}
+          />
+          <Exercises
+            exercises={exercises}
+            category={category}
+            onSelect={this.handleExerciseSelect}
+            exercise={exercise}
+            onDelete={this.handleExerciseDelete}
+            onSelectEdit={this.handleExerciseSelectEdit}
+            editMode={editMode}
+            muscles={muscles}
+            onEdit={this.handleExerciseEdit}
+          />
+          <Footer
+            muscles={muscles}
+            onSelect={this.handleCategorySelect}
+            category={category}
+          />
+        </Fragment>
+      </Provider>
     );
   }
 }

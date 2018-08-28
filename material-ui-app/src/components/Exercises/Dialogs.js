@@ -6,6 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Add from "@material-ui/icons/Add";
 import Form from "./Form";
+import { Consumer } from "../../context";
 
 export default class extends Component {
   state = {
@@ -25,28 +26,38 @@ export default class extends Component {
 
   render() {
     const { open } = this.state;
-    const { muscles } = this.props;
+    //const { muscles } = this.props;
 
     return (
-      <Fragment>
-        <Button
-          variant="fab"
-          mini
-          onClick={this.handleToggle}
-          color="secondary"
-        >
-          <Add />
-        </Button>
-        <Dialog open={open} onClose={this.handleToggle} fullWidth maxWidth="xs">
-          <DialogTitle>Create a New Exercise</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Please fill out the form below
-            </DialogContentText>
-            <Form muscles={muscles} onSubmit={this.handleFormSubmit} />
-          </DialogContent>
-        </Dialog>
-      </Fragment>
+      <Consumer>
+        {/* or  value and  value.muscle below*/}
+        {({ muscles }) => (
+          <Fragment>
+            <Button
+              variant="fab"
+              mini
+              onClick={this.handleToggle}
+              color="secondary"
+            >
+              <Add />
+            </Button>
+            <Dialog
+              open={open}
+              onClose={this.handleToggle}
+              fullWidth
+              maxWidth="xs"
+            >
+              <DialogTitle>Create a New Exercise</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Please fill out the form below
+                </DialogContentText>
+                <Form muscles={muscles} onSubmit={this.handleFormSubmit} />
+              </DialogContent>
+            </Dialog>
+          </Fragment>
+        )}
+      </Consumer>
     );
   }
 }
