@@ -41,8 +41,6 @@ export default withStyles(styles)(
     };
 
     handleSubmit = () => {
-      //TODO: validation
-
       this.props.onSubmit({
         id: this.state.title.toLocaleLowerCase().replace(/ /g, "-"),
         ...this.state
@@ -62,10 +60,14 @@ export default withStyles(styles)(
             value={title}
             onChange={this.handleChange("title")}
             margin="normal"
-            className={classes.FormControl}
+            //className={classes.FormControl}
+            fullWidth
           />
           <br />
-          <FormControl className={classes.FormControl}>
+          <FormControl
+            //className={classes.FormControl}
+            fullWidth
+          >
             <InputLabel htmlFor="Muscles">Muscles</InputLabel>
             <Select value={muscles} onChange={this.handleChange("muscles")}>
               {categories.map(category => (
@@ -83,7 +85,8 @@ export default withStyles(styles)(
             margin="normal"
             multiline
             rows="4"
-            className={classes.FormControl}
+            //className={classes.FormControl}
+            fullWidth
           />
           <br />
 

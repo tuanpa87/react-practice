@@ -20,8 +20,8 @@ const footer = ({ muscles, onSelect, category, width }) => {
     <Paper>
       <Tabs
         value={index}
-        indicatorColor="primary"
-        textColor="primary"
+        indicatorColor="secondary"
+        textColor="secondary"
         centered={width !== "xs"}
         onChange={onIndexSelect}
         scrollable={width === "xs"}
