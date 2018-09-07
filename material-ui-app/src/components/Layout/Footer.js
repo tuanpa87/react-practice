@@ -25,7 +25,7 @@ const footer = ({ muscles, onSelect, category, width }) => {
         centered={width !== "xs"}
         onChange={onIndexSelect}
         scrollable={width === "xs"}
-        //scrollButtons="auto"
+        scrollButtons="on"
       >
         <Tab label="All" />
         {muscles.map((muscle, index) => (
